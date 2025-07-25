@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Customizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="scene-container"></div>
+    
+    <!-- Floating Customization Panel -->
+    <div id="customization-panel" class="panel">
+        <div class="panel-header" id="panel-header">
+            <h2>🎨 Customize Your Shoe</h2>
+            <button id="panel-toggle" class="panel-toggle">▲</button>
+        </div>
+        <div id="panel-content" class="panel-content">
+            <div id="controls-container" class="controls">
+                <div class="loading">Loading parts…</div>
+            </div>
+            <div class="export-section">
+                <button id="export-btn" class="export-button" disabled>
+                    📸 Preview Export
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Preview Modal -->
+    <div id="export-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎨 Your Customized Sneakers</h2>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="preview-container">
+                    <canvas id="preview-canvas"></canvas>
+                </div>
+                <div class="modal-actions">
+                    <button id="download-btn" class="download-button">
+                        💾 Download PNG
+                    </button>
+                    <button id="cancel-btn" class="cancel-button">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Three.js and FBX Loader -->
+    <script src="https://unpkg.com/fflate@0.6.9/umd/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/FBXLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
