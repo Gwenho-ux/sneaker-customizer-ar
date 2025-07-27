@@ -627,6 +627,19 @@ function initAR() {
     ar3DCanvas = document.getElementById('ar-3d-canvas');
     arOverlayContext = arOverlayCanvas.getContext('2d');
 
+    // Initialize DeepAR
+    window.deepAR = new DeepAR({
+        licenseKey: 'ce194bb1cfa2ce9089b69a4bcbf3c2a1b87542ba8e27ac094cc44542c5bba5efefdcef80dadc2b11',
+        canvas: ar3DCanvas
+    });
+    window.deepAR.initialize().then(() => {
+        console.log('DeepAR initialized successfully');
+        // Load the shoe try-on effect
+        window.deepAR.switchEffect(0, 'public/shoe_tryon.deepar');
+    }).catch((err) => {
+        console.error('DeepAR initialization failed:', err);
+    });
+
     // Initialize MediaPipe Pose
     pose = new Pose({
         locateFile: (file) => {
