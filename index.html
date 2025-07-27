@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sneaker Customizer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="scene-container"></div>
-    
+
+    <!-- AR Camera Container -->
+    <div id="ar-container" class="ar-container hidden">
+        <video id="ar-video" class="ar-video" autoplay muted playsinline></video>
+        <canvas id="ar-overlay-canvas" class="ar-overlay-canvas"></canvas>
+        <canvas id="ar-3d-canvas" class="ar-3d-canvas"></canvas>
+        <div id="ar-instructions" class="ar-instructions">
+            <div class="ar-instruction-text">
+                📱 Point camera at your feet
+                <div class="ar-status" id="ar-status">Looking for feet...</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Floating Customization Panel -->
     <div id="customization-panel" class="panel">
         <div class="panel-header" id="panel-header">
@@ -19,12 +35,25 @@
             <button id="panel-toggle" class="panel-toggle">▲</button>
         </div>
         <div id="panel-content" class="panel-content">
+            <!-- AR Mode Toggle -->
+            <div class="ar-toggle-section">
+                <button id="ar-mode-btn" class="ar-mode-button">
+                    📱 Try On AR
+                </button>
+                <button id="normal-mode-btn" class="normal-mode-button hidden">
+                    🔙 Back to 3D
+                </button>
+            </div>
+
             <div id="controls-container" class="controls">
                 <div class="loading">Loading parts…</div>
             </div>
             <div class="export-section">
                 <button id="export-btn" class="export-button" disabled>
                     📸 Preview Export
+                </button>
+                <button id="ar-capture-btn" class="ar-capture-button hidden">
+                    📸 Capture AR
                 </button>
             </div>
         </div>
@@ -58,6 +87,13 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/FBXLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- MediaPipe for foot detection -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+
     <script src="main.js"></script>
 </body>
+
 </html>
